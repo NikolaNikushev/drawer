@@ -1,4 +1,11 @@
 {
+  "exclude": [
+    "example",
+    "node_modules"
+  ],
+  "include": [
+    "./src/*"
+  ],
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
@@ -10,8 +17,8 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
-    "lib": ["esnext"],
-    "module": "esnext",
+    "lib": ["esnext","DOM"],
+    "module": "commonjs",
     "moduleResolution": "node",
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
@@ -19,12 +26,12 @@
     "noImplicitThis": true,
     "noImplicitUseStrict": false,
     "noStrictGenericChecks": false,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "esnext",
+    "target": "es6",
     "plugins": [{ "name": "typescript-tslint-plugin" }]
   }
 }

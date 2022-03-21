@@ -31,7 +31,9 @@ export default class DrawerNavigatorItems extends React.Component<
   };
 
   static contextType = ThemeContext;
-  context!: React.ContextType<typeof ThemeContext>;
+  getContext(): React.ContextType<typeof ThemeContext> {
+    return this.context;
+  }
 
   private getActiveTintColor() {
     let { activeTintColor } = this.props;
@@ -41,7 +43,7 @@ export default class DrawerNavigatorItems extends React.Component<
       return activeTintColor;
     }
 
-    return activeTintColor[this.context];
+    return activeTintColor[this.getContext()];
   }
 
   private getInactiveTintColor() {
@@ -52,7 +54,7 @@ export default class DrawerNavigatorItems extends React.Component<
       return inactiveTintColor;
     }
 
-    return inactiveTintColor[this.context];
+    return inactiveTintColor[this.getContext()];
   }
 
   private getActiveBackgroundColor() {
@@ -63,7 +65,7 @@ export default class DrawerNavigatorItems extends React.Component<
       return activeBackgroundColor;
     }
 
-    return activeBackgroundColor[this.context];
+    return activeBackgroundColor[this.getContext()];
   }
 
   private getInactiveBackgroundColor() {
@@ -74,7 +76,7 @@ export default class DrawerNavigatorItems extends React.Component<
       return inactiveBackgroundColor;
     }
 
-    return inactiveBackgroundColor[this.context];
+    return inactiveBackgroundColor[this.getContext()];
   }
 
   render() {

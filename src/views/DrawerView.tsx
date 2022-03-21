@@ -110,8 +110,6 @@ export default class DrawerView extends React.PureComponent<Props, State> {
     Dimensions.removeEventListener('change', this.updateWidth);
   }
 
-  context!: React.ContextType<typeof ThemeContext>;
-
   private drawerGestureRef = React.createRef<PanGestureHandler>();
 
   private getLockMode = ({ navigation, descriptors }: Props) => {
@@ -161,9 +159,9 @@ export default class DrawerView extends React.PureComponent<Props, State> {
         descriptors={this.props.descriptors}
         contentComponent={this.props.navigationConfig.contentComponent}
         contentOptions={this.props.navigationConfig.contentOptions}
+        {...this.props.navigationConfig}
         drawerPosition={this.props.navigationConfig.drawerPosition}
         style={this.props.navigationConfig.style}
-        {...this.props.navigationConfig}
       />
     );
   };
@@ -220,18 +218,20 @@ export default class DrawerView extends React.PureComponent<Props, State> {
 
   private setDrawerGestureRef = (ref: PanGestureHandler | null) => {
     // @ts-ignore
-    this.drawerGestureRef.current = ref;
+    (this.drawerGestureRef as any).current = ref;
   };
 
   private getDrawerBackgroundColor() {
     const { drawerBackgroundColor } = this.props.navigationConfig;
 
+    const context: React.ContextType<typeof ThemeContext> = this.context;
+
     if (drawerBackgroundColor) {
       return typeof drawerBackgroundColor === 'string'
         ? drawerBackgroundColor
-        : drawerBackgroundColor[this.context];
+        : drawerBackgroundColor[context];
     } else {
-      return ThemeColors[this.context].bodyContent;
+      return ThemeColors[context].bodyContent;
     }
   }
 
